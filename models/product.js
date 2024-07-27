@@ -2,6 +2,15 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const Joi = require("joi")
 
+const commentSchema = new Schema({
+    text: String,
+    username: String,
+    date: {
+        type: Date,
+        default: Date.now()
+    }
+})
+
 const productSchema = new Schema({
     name: String,
     price: Number,
@@ -11,7 +20,12 @@ const productSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    isActive: Boolean
+    isActive: Boolean,
+    category: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Category" 
+    },
+    comments: [commentSchema] // Comment Schema'yı array içerisine tanımlıyoruz
 })
 
 
@@ -22,12 +36,19 @@ function validateProduct(product) {
         price: Joi.number().required(),
         description: Joi.string().required(),
         image: Joi.string().required(),
-        isActive: Joi.boolean()
+        isActive: Joi.boolean(),
+        category: Joi.string().required(),
+        comments: Joi.array().items(Joi.object({
+            text: Joi.string().required(),
+            username: Joi.string().required(),
+            date: Joi.date()
+        }))
     })
 
     return schema.validate(product)
 }
 
-const Product = mongoose.model("Product", productSchema) // model
+const Product = mongoose.model("Product", productSchema)
+const Comment = mongoose.model("Comment", commentSchema)
 
-module.exports = { Product, validateProduct }
+module.exports = { Product, Comment, validateProduct }
