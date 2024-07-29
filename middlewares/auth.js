@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const config = require('config');
 
 function auth(req, res, next) {
     const token = req.header("x-auth-token")
@@ -7,11 +8,11 @@ function auth(req, res, next) {
     }
 
     try {
-        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
+        const decodedToken = jwt.verify(token, config.get("auth.TOKEN_SECRET"))
         req.user = decodedToken
         next()
     } catch (ex) {
-        res.status(403).send("Hatali Token")
+        return res.status(403).send("Hatali Token")
     }
 }
 

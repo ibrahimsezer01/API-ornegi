@@ -17,13 +17,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    isAdmin: {
+        type: Boolean,
+    }
     // products: [
     //     {
     //         type: Schema.Types.ObjectId,
     //         ref: "Product"
     //     }
     // ]
-}, { timestamps: true})
+}, { timestamps: true })
 
 
 // Validate
@@ -32,6 +35,7 @@ function validateRegister(user) {
         name: Joi.string().min(3).max(50).required(),
         email: Joi.string().min(3).max(50).required().email(),
         password: Joi.string().min(8).required(),
+        isAdmin: Joi.boolean()
     })
 
     return schema.validate(user)
@@ -46,8 +50,8 @@ function validateLogin(user) {
     return schema.validate(user)
 }
 
-userSchema.methods.createAuthToken = () => {
-    return jwt.sign({ _id: this._id }, process.env.TOKEN_SECRET)
+userSchema.methods.createAuthToken = function() {
+    return jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, process.env.TOKEN_SECRET)
 }
 
 const User = mongoose.model("User", userSchema)

@@ -1,0 +1,40 @@
+{
+  message: 'Error: Operation `categories.find()` buffering timed out after 10000ms, Stack: MongooseError: Operation `categories.find()` buffering timed out after 10000ms\n' +
+    '    at Timeout.<anonymous> (C:\\Users\\ASUS\\OneDrive\\Masaüstü\\Node.js\\Sadik-Turan\\Api\\backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\collection.js:185:23)\n' +
+    '    at listOnTimeout (node:internal/timers:573:17)\n' +
+    '    at process.processTimers (node:internal/timers:514:7)',
+  level: 'error',
+  timestamp: 'Jul-29-2024 16:13:43'
+}
+{
+  message: 'Error: Operation `products.find()` buffering timed out after 10000ms, Stack: MongooseError: Operation `products.find()` buffering timed out after 10000ms\n' +
+    '    at Timeout.<anonymous> (C:\\Users\\ASUS\\OneDrive\\Masaüstü\\Node.js\\Sadik-Turan\\Api\\backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\collection.js:185:23)\n' +
+    '    at listOnTimeout (node:internal/timers:573:17)\n' +
+    '    at process.processTimers (node:internal/timers:514:7)',
+  level: 'error',
+  timestamp: 'Jul-29-2024 16:45:59'
+}
+{
+  message: 'Error: Operation `products.find()` buffering timed out after 10000ms, Stack: MongooseError: Operation `products.find()` buffering timed out after 10000ms\n' +
+    '    at Timeout.<anonymous> (C:\\Users\\ASUS\\OneDrive\\Masaüstü\\Node.js\\Sadik-Turan\\Api\\backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\collection.js:185:23)\n' +
+    '    at listOnTimeout (node:internal/timers:573:17)\n' +
+    '    at process.processTimers (node:internal/timers:514:7)',
+  level: 'error',
+  timestamp: 'Jul-29-2024 16:48:16'
+}
+{ level: 'error', timestamp: 'Jul-29-2024 17:17:52' }
+{
+  message: 'Cannot connect to  Mongo   Server  at',
+  level: 'error',
+  timestamp: 'Jul-29-2024 17:18:30'
+}
+{
+  message: 'Cannot connect to  Mongo   Server  at',
+  level: 'error',
+  timestamp: 'Jul-29-2024 17:39:36'
+}
+{
+  message: 'Cannot connect to  Mongo   Server  at',
+  level: 'error',
+  timestamp: 'Jul-29-2024 17:40:07'
+}
