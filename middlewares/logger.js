@@ -1,13 +1,13 @@
-const { createLogger, transports, format, info, error } = require('winston');
+const { createLogger, transports, format } = require('winston');
 const { combine, timestamp, prettyPrint, printf } = format
 require("winston-mongodb")
-
-const config = require("config")
 
 const username = config.get("username")
 const password = config.get("password")
 const database = config.get("database")
 const cluster = config.get("cluster")
+
+const uri = `mongodb+srv://${username}:${password}@${cluster}.amufmzi.mongodb.net/${database}?retryWrites=true&w=majority`;
 
 const logger = createLogger({
     level: 'debug',
@@ -17,10 +17,11 @@ const logger = createLogger({
     ),
     transports: [
         new transports.Console(),
-        new transports.File({ filename: 'error.log', level: "error" }),
+        new transports.File({ filename: 'logs/logs.log', level: "error", handleExceptions: false, handleRejections: false }),
+        new transports.File({ filename: 'logs/exceptions.log', level: "error", handleExceptions: true, handleRejections: true }),
         new transports.MongoDB({
-            level: 'error', // MongoDB'ye sadece hata seviyesindeki logları yazma
-            db: `mongodb+srv://${username}:${password}@${cluster}.amufmzi.mongodb.net/${database}?retryWrites=true&w=majority`, // MongoDB bağlantı URL'si
+            level: 'error',
+            db: uri,
             options: {
                 useUnifiedTopology: true,
                 useNewUrlParser: true

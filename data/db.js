@@ -6,16 +6,17 @@ const password = config.get("password")
 const database = config.get("database")
 const cluster = config.get("cluster")
 
-const logger = require("../middlewares/logger")
+const uri = `mongodb+srv://${username}:${password}@${cluster}.amufmzi.mongodb.net/${database}?retryWrites=true&w=majority`;
 
-process.on("uncaughtException", (err) => logger.error(err.message))
+const logger = require("../middlewares/logger")
 
 const connect = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://${username}:${password}@${cluster}.amufmzi.mongodb.net/${database}?retryWrites=true&w=majority`)
+        await mongoose.connect(uri)
         logger.info("Bağlanti oluşturuldu");
     } catch (error) {
         logger.error(error);
+        process.exit(1)
     }
 }
 

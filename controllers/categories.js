@@ -1,6 +1,5 @@
 const { Category, validateCategory } = require("../models/category")
 
-
 exports.get_categories = async (req, res) => {
     const categories = await Category.find().populate("product", "name price -_id")
 
